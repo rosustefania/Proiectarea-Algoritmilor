@@ -1,0 +1,98 @@
+# PA Homework "Gigel si muntele de bani"
+## Rosu Adriana-Stefania 324CD
+
+
+### "Gigel si criptomonedele":
+
+#### Crypto class:
+    - this class implements the first problem with a Greedy approach;
+    - void swap(int[][] matrix, int i, int j), int partition(int[][] data, int first, int last) and
+    void quickSort(int[][] matrix, int low, int high) are method that implement the quick sort;
+    swap method swaps two lines in a matrix, while partition method takes a computer as pivot,
+    places the pivot at its correct position in sorted matrix, and places all the computers with
+    smaller mining power (smaller than pivot) above the pivot and all the computers with greater
+    mining power under the pivot;
+    - int getMinimumPower() method returns the computer with the minimum mining power;
+    - void doUpdate(int computer) method updates the given computer by incrementing its mining
+    power with one and updates Gigel's budget;
+    - int buyComputers() method returns the maximum number of crypto currencies made per hour;
+    first, sorts the given computers ascending by their mining power; while Gigel still has money
+    to make updates, we will get the first computers, the ones with minimum mining power and we
+    will try to update all of them; if we can, then we will raise the minimum power with one, if
+    not then we stop; the computer we stop at will give us the maximum number of crypto currencies
+    that gigel can mine per hour;
+    - void main(String[] args) method reads data from "crypto.in" and print our result to
+    "crypto.out"; for a better complexity, if two adjacent computers have the same mining power
+    they will be stored as one and their updates' prices will be summed.
+
+##### Complexity:
+    - quick sort worst case complexity is n ^ 2, but in our case n is does not represents the
+    given numbers of computers, because we combine two adjacent computers with the same mining
+    power; let m be the number of computers after data reading;
+
+    T(n) = O(n) + O(m ^ 2) + O(b * m), where n represents number of computers and b represents
+    the given budget.
+
+
+
+
+### "Gigel investeste la bursa":
+
+#### Stocks class:
+    - this class implements the second problem based on the 0-1 Knapsack's Problem with dynamic
+    approach; the difference in our case is that we must take into account not only not to exceed
+    the budget,but also to have a lower loss than the given one, so we will implement it with a
+    3D array;
+    - int invest(int numberOfStocks, int budget, List<StockInfo> stocks) method builds a 3D array;
+    the first coordinate represents the stock's number, the second one represents the spend budget,
+    and the third one the possible loss; before buying a stock verifies if there's enough budget
+    and if the loss is lower than the given one; if so and if buying the current stock will give
+    a better maximum profit, Gigel will buy it, if not, tries with the next one and so on;
+    after building this matrix the best solution will be stored in the last value;
+    - void main(String[] args) method reads data from "stocks.in" and print our result to
+    "stocks.out".
+
+##### Complexity:
+    T(n) = O(n) + O(n * b * l), where n = number of stocks, b = budget, l = maximum loss.
+
+
+### "Gigel merge la munte":
+
+#### Valley class:
+    - this class implements the third problem;
+    - long[][] minimumRidge (long left, long right) gets the ridge that has the minimum height;
+    stores its height and its index in the valley array; this method helps us to get the pivot
+    ridge in our sequence of ridges; now we know that the sequence that ends with this ridge needs
+    to be a decreasing one, and the sequence that starts with this ridge needs to be an increasing
+    one;
+    - void calculateTimeDecreasingSequence(long left, long right) method makes the left part
+    a decreasing subsequence and calculates the time needed; compares numbers two by two and updates
+    where is the case;
+    - void calculateTimeIncreasingSequence(long left, long right) method makes the right part
+    an increasing subsequence and calculates the time needed; compares numbers two by two and
+    updates where is the case;
+    - void bestTime(long left, long right) verifies if the given subsequence can represent a valley
+    (the first or the last element isn't the pivot), if it's possible sums the time needed to make
+    the left subsequence decrease nd the right subsequence increase;
+
+##### Complexity:
+    T(n) = O(n) + O(n) + O(n + 1) = O(n), where n represents the number of ridges in the valley.
+
+
+### "Gigel si creasta montana":
+
+#### Ridge class:
+    - this class implements the fourth problem by using a dynamic approach;
+    - long dig(int numberOfRidges) method builds a 2D array whose number of column represents
+    the number of diggings we can make for a ridge: 0, 1 or 2 and its number of line represents
+    the ridge's number; for the first ridge, the matrix stores its cost for the corresponding
+    number of diggings on the first line; the method iterates through our ridges, starting with the
+    second one because it will always compare it to the previous one; if we can still dig the
+    current ridge (height must be 0 or greater), verifies if it's best to dig the previous once,
+    twice or not at all (height of the previous ridge after these diggings must also be greater
+     or equal to 0 ); after getting the best solution for the current ridge, calculates its
+    cost; in the end, gets the best digging combination by getting the minimum cost after digging
+    the last ridge meaning it gets the minimum of the last line of the matrix.
+
+##### Complexity:
+    T(n) = O(n) + O(n * 3) = O(n), where n represents the number of ridges.

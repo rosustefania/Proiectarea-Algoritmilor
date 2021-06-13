@@ -1,0 +1,32 @@
+# PA Homework No.2
+## Rosu Adriana-Stefania 324CD
+
+
+### Problem No.1:
+
+#### For solving this problem, I used a BFS traversal of a grid, getting the 
+the minimum distance between the given starting point and the grid's outer space.
+	The "Coordinates" structure helps us store the coordinates of a grid cell.
+	The "isGoal" function returns true if Gigel is one of the grid's boarders 
+and if the brigde he's currrently on helps him escape, otherwise returns false.
+	The "minDistBFS" function does the BFS traversal to get the minimum
+distance. This function uses three arrays, that help to get the neighbors' 
+coordinates based on the bridge's type: double, vertical, or horizontal. To do 
+the traversal, we use a queue that stores a pair between coordinates of the 
+visited cell and the distance calculated from the initial cell to the current 
+one. First, we verify if Gigel can escape from the initial point. If not we go 
+through our grid by getting the adjacent cells, marking them as visited, and 
+adding them into the queue. If there's no escape route the function returns -1.
+	In the main function, we use two files, one to get the input and one to 
+store the output. We read the data from the "poduri.in" file, then calculate the
+minimum distance using the previous function. In the end, we close the files.
+
+
+##### Complexity:
+    - reading the data has a NxM complexity, where N represents the number of 
+    grid's lines and M the number of columns;
+    - the BFS traversal worst case complexity is also NxM;
+
+    T(n) = O(NxM) + O(NxM) = 2 x O(NxM) = O(NxM).
+
+
